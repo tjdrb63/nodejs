@@ -28,6 +28,10 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
+router.get('/', isNotLoggedIn, (req, res) => {
+   res,render('qa', { title:'질의응답' })
+});
+
 router.post('/img', isLoggedIn, upload.single('img'), (req, res) => {
   console.log(req.file);
   res.json({ url: `/img/${req.file.filename}` });
