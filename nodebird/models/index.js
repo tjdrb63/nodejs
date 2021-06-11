@@ -5,6 +5,8 @@ const User = require('./user');
 const Post = require('./post');
 const Hashtag = require('./hashtag');
 const Intro = require('./intro');
+const Qa = require('./qa');
+
 
 const db = {};
 const sequelize = new Sequelize(
@@ -15,16 +17,19 @@ db.sequelize = sequelize;
 db.User = User;
 db.Post = Post;
 db.Hashtag = Hashtag;
+db.Qa= Qa;
 db.Intro =Intro;
 
 User.init(sequelize);
 Post.init(sequelize);
 Hashtag.init(sequelize);
 Intro.init(sequelize);
+Qa.init(sequelize);
 
 User.associate(db);
 Post.associate(db);
 Hashtag.associate(db);
 Intro.associate(db);
+Qa.associate(db);
 
 module.exports = db;

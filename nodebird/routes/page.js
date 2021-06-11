@@ -1,6 +1,6 @@
 const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
-const { Post, User, Hashtag } = require('../models');
+const { Qa, Post, User, Hashtag } = require('../models');
 const { render } = require('nunjucks');
 
 const router = express.Router();
@@ -14,20 +14,35 @@ router.use((req, res, next) => {
 });
 
 router.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile', { title: '내 정보 - NodeBird' });
+  res.render('profile', { title: '내 정보' });
 });
 
 router.get('/join', isNotLoggedIn, (req, res) => {
-  res.render('join', { title: '회원가입 - NodeBird' });
+  res.render('join', { title: '회원가입' });
 });
 
-router.get('/qa',(req, res) => {
-   res.render('qa', {title : '질의응답' })
+router.get('/qa',async (req, res) => {
+  try {
+    const post = await Post.findAll({
+      include: {
+        model: User,
+        attributes: ['id', 'nick'],
+      },
+      order: [['createdAt', 'DESC']],
+    });
+    res.render('qa', {
+      title: '질의 응답 페이지',
+      twits: post,
+    });
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
 });
 
 router.get('/', async (req, res, next) => {
   try {
-    const posts = await Post.findAll({
+    const post = await Post.findAll({
       include: {
         model: User,
         attributes: ['id', 'nick'],
@@ -35,8 +50,8 @@ router.get('/', async (req, res, next) => {
       order: [['createdAt', 'DESC']],
     });
     res.render('main', {
-      title: 'NodeBird',
-      twits: posts,
+      title: '자기소개',
+      twits: post,
     });
   } catch (err) {
     console.error(err);
