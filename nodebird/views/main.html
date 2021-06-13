@@ -33,6 +33,10 @@
                 <div class="twit-author">{{twit.User.nick}}</div>
 
                 <div class="twit-content">{{twit.content}}</div>
+                {% if twit.UserId == user.id %}
+                <button class="optbtn">삭제</button>
+                <button class="optbtn">수정</button>
+                {% endif %}
                 {% if twit.img %}
                 <div class="twit-img"><img src="{{twit.img}}" alt="섬네일"></div>
                 {% endif %}

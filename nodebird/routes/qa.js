@@ -9,12 +9,12 @@ const { isLoggedIn} = require('./middlewares');
 
 const router = express.Router();
 
-// try{
-//     fs.readdirSync('qaupload');
-// }catch(err){
-//     console.error('qaupload 폴더가 없어 생성');
-//     fs.mkdirSync('qaupload');
-// }
+try{
+    fs.readdirSync('qaupload');
+}catch(err){
+    console.error('qaupload 폴더가 없어 생성');
+    fs.mkdirSync('qaupload');
+}
 
 const upload = multer({
     storage:multer.diskStorage({
@@ -31,7 +31,7 @@ const upload = multer({
 });
 router.post('/qa',isLoggedIn,upload.single('img'),(req,res)=>{
     console.log(req.file);
-   // res.json({url:`/img/${req.file.filename}`});
+    res.json({url:`/img/${req.file.filename}`});
 });
 const upload2 =multer();
 router.post('/',isLoggedIn,upload2.none(),async(req,res,next)=>{

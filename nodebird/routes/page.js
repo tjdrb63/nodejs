@@ -21,6 +21,12 @@ router.get('/join', isNotLoggedIn, (req, res) => {
   res.render('join', { title: '회원가입' });
 });
 
+router.get('/intro',async(req,res)=>{
+  res.render('intro',{
+    title:'자기소개'
+  });
+})
+
 router.get('/qa',async (req, res) => {
   try {
     const post = await Post.findAll({

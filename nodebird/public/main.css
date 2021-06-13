@@ -82,7 +82,7 @@ textarea {
 }
 .cheader h1{
     width: 100%;
-    font-size: 50dp;
+    font-size: 30px;
 }
 .menu ul{
     padding: 0px;
@@ -94,13 +94,15 @@ textarea {
     list-style: none;
 }
 .menu ul li a {
-    background-color: thistle;
+    background-color: lightcoral;
     display: block;
     text-decoration: none;
     height: 70px;
     line-height: 70px;
     text-align: center;
     outline: 2px solid silver;
+    font-size: 20px;
+    color: black;
 }
 .menu{
 
@@ -117,7 +119,10 @@ textarea {
     font-size: 20px;
     text-align: center;
 }
-
+.optbtn{
+    float: right;
+    margin-bottom: 10px;
+}
 @media screen and (min-width: 800px) {
     .profile-wrap {
         width: 290px;
@@ -205,6 +210,7 @@ textarea {
     padding: 10px;
     position: relative;
     margin-bottom: 10px;
+    padding-bottom: 30px;
 }
 
 .twit-author {
@@ -212,7 +218,10 @@ textarea {
     font-weight: bold;
     margin-right: 10px;
 }
-
+.icontainer{
+    border: solid silver 1px;
+    padding-left: 15px;
+}
 .twit-follow {
     padding: 1px 5px;
     background: #fff;
